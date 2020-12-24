@@ -1,0 +1,574 @@
+int Map_1(char*);
+int Map_1_Determine(char*);
+int Map_2(char*);
+int Map_2_Determine(char*);
+int Map_3(char*);
+int Map_3_Determine(char*);
+int Map_4(char*);
+int Map_4_Determine(char*);
+int Map_5(char*);
+int Map_5_Determine(char*);
+int Map_6(char*);
+int Map_6_Determine(char*);
+
+int Map_Determine(char*,int);
+
+int Map_Determine(char* p_map,int map_num)
+{
+    switch(map_num){
+        case 1 :return Map_1_Determine(p_map);
+                break;
+        case 2 :return Map_2_Determine(p_map);
+                break;
+        case 3 :return Map_3_Determine(p_map);
+                break;
+        case 4 :return Map_4_Determine(p_map);
+                break;
+        case 5 :return Map_5_Determine(p_map);
+                break;
+        case 6 :return Map_6_Determine(p_map);
+                break;
+        /*case 7：补充地图*/
+        default:break;
+    }
+    return 0;
+}
+
+int Map_1(char* p_map)//地图一
+{
+    int i,j;
+    for(i=4,j=11;j>2;j--){
+        *(p_map+i+Y*j)=WALL;
+    }
+    for(j=Y-9,i=5;i<7;i++){
+        *(p_map+i+j*Y)=WALL;
+    }
+    for(i=7,j=8;j>2;j--){
+        *(p_map+i+Y*j)=WALL;
+    }
+    for(i=0,j=0;j<Y;j++){//左
+        *(p_map+i+X*j)=WALL;
+    }
+    for(i=X-1,j=0;j<Y;j++){//右
+        *(p_map+i+X*j)=WALL;
+    }
+    for(i=0,j=0;i<X;i++){//上
+        *(p_map+i+X*j)=WALL;
+    }
+    for(i=0,j=Y-1;i<X;i++){//下
+        *(p_map+i+X*j)=WALL;
+    }
+
+    i=6,j=6;//箱子初始化
+    *(p_map+i+X*j)=BOX;
+
+    i=2,j=9;//目标点初始化
+    *(p_map+i+X*j)=TARGET;
+
+    j=8;//人物初始化
+    *(p_map+i+X*j)=POP;
+
+    return i+j*X;
+
+}
+
+int Map_1_Determine(char* p_map)
+{
+    int x1=2,y1=9;
+
+    if(*(p_map+x1+y1*X)==BOX){
+        return 1;
+    }
+    else if(*(p_map+x1+y1*X)==' '){
+        *(p_map+x1+y1*X)=TARGET;
+    }
+    return 0;
+}
+
+int Map_2(char* p_map) //地图二
+{
+    int i,j;
+    for(j=0;j<4;j++){
+        for(i=0;i<12;i++){
+            *(p_map+i+X*j)=WALL;
+        }
+    }
+    for(j=4;j<8;j++){
+        for(i=0;i<4;i++){
+            *(p_map+i+X*j)=WALL;
+        }
+    }
+    for(j=4;j<8;j++){
+        for(i=8;i<12;i++){
+            *(p_map+i+X*j)=WALL;
+        }
+    }
+    for(j=8;j<12;j++){
+        for(i=0;i<12;i++){
+            *(p_map+i+X*j)=WALL;
+        }
+    }
+    for(i=5,j=6;j<7;j++){
+        *(p_map+i+X*j)=WALL;
+    }
+
+    i=5,j=5; //箱子初始化
+    *(p_map+i+X*j)=BOX;
+    i=6,j=6; //箱子初始化
+    *(p_map+i+X*j)=BOX;
+    i=5,j=7; //箱子初始化
+    *(p_map+i+X*j)=BOX;
+
+    for(i=7,j=5;j<8;j++){
+        *(p_map+i+X*j)=TARGET;
+    }
+
+    i=6,j=5;
+    *(p_map+i+X*j)=POP;
+
+    return i+j*X;
+}
+
+int Map_2_Determine(char*p_map)
+{
+    int x1=7,y1=5;
+    int x2=7,y2=6;
+    int x3=7,y3=7;
+
+    if(*(p_map+x1+y1*X)==BOX && *(p_map+x2+y2*X)==BOX && *(p_map+x3+y3*X)==BOX){
+        return 1;
+    }
+    else{
+        if(*(p_map+x1+y1*X)==' '){
+            *(p_map+x1+y1*X)=TARGET;
+        }
+        if(*(p_map+x2+y2*X)==' '){
+            *(p_map+x2+y2*X)=TARGET;
+        }
+        if(*(p_map+x3+y3*X)==' '){
+            *(p_map+x3+y3*X)=TARGET;
+        }
+    }
+    return 0;
+}
+
+int Map_3(char*p_map) //地图三
+{
+    int i,j;
+    for(j=0;j<3;j++){
+        for(i=0;i<12;i++){
+            *(p_map+i+Y*j)=WALL;
+        }
+    }
+    for(j=3;j<5;j++){
+        for(i=0;i<5;i++){
+            *(p_map+i+Y*j)=WALL;
+        }
+    }
+    for(j=3;j<5;j++){
+        for(i=7;i<12;i++){
+            *(p_map+i+Y*j)=WALL;
+        }
+    }
+    for(j=5;j<7;j++){
+        for(i=0;i<4;i++){
+            *(p_map+i+Y*j)=WALL;
+        }
+    }
+    for(j=5;j<7;j++){
+        for(i=8;i<12;i++){
+            *(p_map+i+Y*j)=WALL;
+        }
+    }
+    for(j=7;j<9;j++){
+        for(i=0;i<3;i++){
+            *(p_map+i+Y*j)=WALL;
+        }
+    }
+    for(j=7;j<9;j++){
+        for(i=9;i<12;i++){
+            *(p_map+i+Y*j)=WALL;
+        }
+    }
+    for(j=9;j<12;j++){
+        for(i=0;i<12;i++){
+            *(p_map+i+Y*j)=WALL;
+        }
+    }
+    i=5,j=7;
+    *(p_map+i+Y*j)=WALL;
+
+    i=6,j=5;
+    *(p_map+i+Y*j)=BOX;
+    i=5,j=6;
+    *(p_map+i+Y*j)=BOX;
+    for(i=6,j=7;i<8;i++){
+        *(p_map+i+Y*j)=BOX;
+    }
+
+    for(i=5,j=3;i<7;i++){
+        *(p_map+i+Y*j)=TARGET;
+    }
+    i=6,j=4;
+    *(p_map+i+Y*j)=TARGET;
+    i=7,j=5;
+    *(p_map+i+Y*j)=TARGET;
+
+    i=5,j=8;
+    *(p_map+i+Y*j)=POP;
+
+    return i+j*X;
+}
+
+int Map_3_Determine(char*p_map)
+{
+    int x1=5,y1=3;
+    int x2=6,y2=3;
+    int x3=6,y3=4;
+    int x4=7,y4=5;
+
+    if(*(p_map+x1+y1*X)==BOX && *(p_map+x2+y2*X)==BOX && *(p_map+x3+y3*X)==BOX && *(p_map+x4+y4*X)==BOX){
+        return 1;
+    }
+    else{
+        if(*(p_map+x1+y1*X)==' '){
+            *(p_map+x1+y1*X)=TARGET;
+        }
+        if(*(p_map+x2+y2*X)==' '){
+            *(p_map+x2+y2*X)=TARGET;
+        }
+        if(*(p_map+x3+y3*X)==' '){
+            *(p_map+x3+y3*X)=TARGET;
+        }
+        if(*(p_map+x4+y4*X)==' '){
+            *(p_map+x4+y4*X)=TARGET;
+        }
+    }
+    return 0;
+}
+
+int Map_4(char*p_map) //地图四
+{
+    int i,j;
+    for(j=0;j<12;j++){
+        for(i=0;i<1;i++){
+            *(p_map+i+Y*j)=WALL;
+        }
+    }
+    for(j=0;j<12;j++){
+        for(i=11;i<12;i++){
+            *(p_map+i+Y*j)=WALL;
+        }
+    }
+    for(j=0;j<2;j++){
+        for(i=1;i<11;i++){
+            *(p_map+i+Y*j)=WALL;
+        }
+    }
+    for(j=2;j<4;j++){
+        for(i=1;i<7;i++){
+            *(p_map+i+Y*j)=WALL;
+        }
+    }
+    for(j=6;j<12;j++){
+        for(i=1;i<3;i++){
+            *(p_map+i+Y*j)=WALL;
+        }
+    }
+    for(j=10;j<12;j++){
+        for(i=3;i<11;i++){
+            *(p_map+i+Y*j)=WALL;
+        }
+    }
+    for(j=2,i=7;i<9;i++){
+        *(p_map+i+Y*j)=WALL;
+    }
+    for(j=5,i=5;i<8;i++){
+        *(p_map+i+Y*j)=WALL;
+    }
+    for(j=5,i=9;i<11;i++){
+        *(p_map+i+Y*j)=WALL;
+    }
+    for(j=9,i=6;i<11;i++){
+        *(p_map+i+Y*j)=WALL;
+    }
+    for(i=10,j=6;j<9;j++){
+        *(p_map+i+Y*j)=WALL;
+    }
+    i=5,j=7;
+    *(p_map+i+Y*j)=WALL;
+
+    for(i=4,j=4;j<9;j++){
+         *(p_map+i+Y*j)=BOX;
+    }
+
+    for(j=6,i=5;i<8;i++){
+        *(p_map+i+Y*j)=TARGET;
+    }
+    i=3,j=6;
+    *(p_map+i+Y*j)=TARGET;
+    i=9,j=6;
+    *(p_map+i+Y*j)=TARGET;
+
+    i=4,j=9;
+    *(p_map+i+Y*j)=POP;
+
+    return i+j*X;
+}
+
+int Map_4_Determine(char*p_map)
+{
+    int x1=3,y1=6;
+    int x2=5,y2=6;
+    int x3=6,y3=6;
+    int x4=7,y4=6;
+    int x5=9,y5=6;
+
+    if(*(p_map+x1+y1*X)==BOX && *(p_map+x2+y2*X)==BOX && *(p_map+x3+y3*X)==BOX && *(p_map+x4+y4*X)==BOX && *(p_map+x5+y5*X)==BOX){
+        return 1;
+    }
+    else{
+        if(*(p_map+x1+y1*X)==' '){
+            *(p_map+x1+y1*X)=TARGET;
+        }
+        if(*(p_map+x2+y2*X)==' '){
+            *(p_map+x2+y2*X)=TARGET;
+        }
+        if(*(p_map+x3+y3*X)==' '){
+            *(p_map+x3+y3*X)=TARGET;
+        }
+        if(*(p_map+x4+y4*X)==' '){
+            *(p_map+x4+y4*X)=TARGET;
+        }
+        if(*(p_map+x5+y5*X)==' '){
+            *(p_map+x5+y5*X)=TARGET;
+        }
+    }
+    return 0;
+}
+
+int Map_5(char*p_map) //地图五
+{
+    int i,j;
+    for(j=0;j<2;j++){
+        for(i=0;i<12;i++){
+            *(p_map+i+Y*j)=WALL;
+        }
+    }
+    for(j=2;j<5;j++){
+        for(i=0;i<4;i++){
+            *(p_map+i+Y*j)=WALL;
+        }
+    }
+    for(j=2;j<12;j++){
+        for(i=10;i<12;i++){
+            *(p_map+i+Y*j)=WALL;
+        }
+    }
+    for(j=5;j<12;j++){
+        for(i=0;i<2;i++){
+            *(p_map+i+Y*j)=WALL;
+        }
+    }
+    for(j=7;j<12;j++){
+        for(i=2;i<5;i++){
+            *(p_map+i+Y*j)=WALL;
+        }
+    }
+    for(j=9;j<12;j++){
+        for(i=5;i<10;i++){
+            *(p_map+i+Y*j)=WALL;
+        }
+    }
+    for(j=2,i=7;i<10;i++){
+        *(p_map+i+Y*j)=WALL;
+    }
+    for(j=4,i=7;i<9;i++){
+        *(p_map+i+Y*j)=WALL;
+    }
+    for(j=6,i=6;j<8;j++){
+        *(p_map+i+Y*j)=WALL;
+    }
+    i=9,j=6;
+    *(p_map+i+Y*j)=WALL;
+
+    for(j=5;j<7;j++){
+        for(i=2;i<5;i++){
+            *(p_map+i+Y*j)=TARGET;
+        }
+    }
+
+    for(i=5,j=3;j<5;j++){
+        *(p_map+i+Y*j)=BOX;
+    }
+    i=5,j=6;
+    *(p_map+i+Y*j)=BOX;
+    i=6,j=5;
+    *(p_map+i+Y*j)=BOX;
+    i=7,j=6;
+    *(p_map+i+Y*j)=BOX;
+    i=8,j=7;
+    *(p_map+i+Y*j)=BOX;
+
+    i=8,j=8;
+    *(p_map+i+Y*j)=POP;
+
+    return i+j*X;
+}
+
+int Map_5_Determine(char*p_map)
+{
+    int x1=2,y1=5;
+    int x2=2,y2=6;
+    int x3=3,y3=5;
+    int x4=3,y4=6;
+    int x5=4,y5=5;
+    int x6=4,y6=6;
+
+    if(*(p_map+x1+y1*X)==BOX && *(p_map+x2+y2*X)==BOX && *(p_map+x3+y3*X)==BOX && *(p_map+x4+y4*X)==BOX && *(p_map+x5+y5*X)==BOX && *(p_map+x6+y6*X)==BOX){
+        return 1;
+    }
+    else{
+        if(*(p_map+x1+y1*X)==' '){
+            *(p_map+x1+y1*X)=TARGET;
+        }
+        if(*(p_map+x2+y2*X)==' '){
+            *(p_map+x2+y2*X)=TARGET;
+        }
+        if(*(p_map+x3+y3*X)==' '){
+            *(p_map+x3+y3*X)=TARGET;
+        }
+        if(*(p_map+x4+y4*X)==' '){
+            *(p_map+x4+y4*X)=TARGET;
+        }
+        if(*(p_map+x5+y5*X)==' '){
+            *(p_map+x5+y5*X)=TARGET;
+        }
+        if(*(p_map+x6+y6*X)==' '){
+            *(p_map+x6+y6*X)=TARGET;
+        }
+    }
+    return 0;
+}
+
+int Map_6(char*p_map) //地图六
+{
+    int i,j;
+    for(i=0,j=0;j<12;j++){
+        *(p_map+i+Y*j)=WALL;
+    }
+    for(i=11,j=0;j<12;j++){
+        *(p_map+i+Y*j)=WALL;
+    }
+    for(j=0;j<2;j++){
+        for(i=1;i<11;i++){
+            *(p_map+i+Y*j)=WALL;
+        }
+    }
+    for(j=7;j<12;j++){
+        for(i=1;i<4;i++){
+            *(p_map+i+Y*j)=WALL;
+        }
+    }
+    for(j=2;j<4;j++){
+        for(i=5;i<8;i++){
+            *(p_map+i+Y*j)=WALL;
+        }
+    }
+    for(i=3,j=6;i<6;i++){
+        *(p_map+i+Y*j)=WALL;
+    }
+    for(i=7,j=5;j<9;j++){
+        *(p_map+i+Y*j)=WALL;
+    }
+    for(i=6,j=10;i<8;i++){
+        *(p_map+i+Y*j)=WALL;
+    }
+    i=8,j=2;
+    *(p_map+i+Y*j)=WALL;
+    i=10,j=2;
+    *(p_map+i+Y*j)=WALL;
+    i=5,j=5;
+    *(p_map+i+Y*j)=WALL;
+
+    for(j=2;j<7;j++){
+        for(i=1;i<3;i++){
+            *(p_map+i+Y*j)=TARGET;
+        }
+    }
+
+    for(i=9,j=4;j<7;j++){
+        *(p_map+i+Y*j)=BOX;
+    }
+    i=5,j=7;
+    *(p_map+i+Y*j)=BOX;
+    j=9;
+    *(p_map+i+Y*j)=BOX;
+    i=6,j=8;
+    *(p_map+i+Y*j)=BOX;
+    i=8,j=4;
+    *(p_map+i+Y*j)=BOX;
+    j=7;
+    *(p_map+i+Y*j)=BOX;
+    j=9;
+    *(p_map+i+Y*j)=BOX;
+    i=9,j=8;
+    *(p_map+i+Y*j)=BOX;
+
+    i=9,j=2;
+    *(p_map+i+Y*j)=POP;
+
+    return i+j*X;
+}
+
+int Map_6_Determine(char*p_map)
+{
+    int x1=1,y1=2;
+    int x2=1,y2=3;
+    int x3=1,y3=4;
+    int x4=1,y4=5;
+    int x5=1,y5=6;
+    int x6=2,y6=2;
+    int x7=2,y7=3;
+    int x8=2,y8=4;
+    int x9=2,y9=5;
+    int x10=2,y10=6;
+
+    if(*(p_map+x1+y1*X)==BOX && *(p_map+x2+y2*X)==BOX && *(p_map+x3+y3*X)==BOX && *(p_map+x4+y4*X)==BOX && *(p_map+x5+y5*X)==BOX && *(p_map+x6+y6*X)==BOX && *(p_map+x7+y7*X)==BOX &&*(p_map+x8+y8*X)==BOX && *(p_map+x9+y9*X)==BOX && *(p_map+x10+y10*X)==BOX){
+        return 1;
+    }
+    else{
+        if(*(p_map+x1+y1*X)==' '){
+            *(p_map+x1+y1*X)=TARGET;
+        }
+        if(*(p_map+x2+y2*X)==' '){
+            *(p_map+x2+y2*X)=TARGET;
+        }
+        if(*(p_map+x3+y3*X)==' '){
+            *(p_map+x3+y3*X)=TARGET;
+        }
+        if(*(p_map+x4+y4*X)==' '){
+            *(p_map+x4+y4*X)=TARGET;
+        }
+        if(*(p_map+x5+y5*X)==' '){
+            *(p_map+x5+y5*X)=TARGET;
+        }
+        if(*(p_map+x6+y6*X)==' '){
+            *(p_map+x6+y6*X)=TARGET;
+        }
+        if(*(p_map+x7+y7*X)==' '){
+            *(p_map+x7+y7*X)=TARGET;
+        }
+        if(*(p_map+x8+y8*X)==' '){
+            *(p_map+x8+y8*X)=TARGET;
+        }
+        if(*(p_map+x9+y9*X)==' '){
+            *(p_map+x9+y9*X)=TARGET;
+        }
+        if(*(p_map+x10+y10*X)==' '){
+            *(p_map+x10+y10*X)=TARGET;
+        }
+    }
+    return 0;
+}
+

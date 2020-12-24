@@ -1,0 +1,156 @@
+int map_return_remember = 0;
+int return_num = 0;
+int return_map(char*);
+int save_map(char*);
+
+char map_return_1[X][Y];
+char map_return_2[X][Y];
+char map_return_3[X][Y];
+char map_return_4[X][Y];
+char map_return_5[X][Y];
+char map_return_6[X][Y];
+char map_return_7[X][Y];
+char map_return_8[X][Y];
+char map_return_9[X][Y];
+char map_return_10[X][Y];
+char map_return_11[X][Y];
+char map_return_12[X][Y];
+char map_return_13[X][Y];
+char map_return_14[X][Y];
+char map_return_15[X][Y];
+char map_return_16[X][Y];
+char map_return_17[X][Y];
+char map_return_18[X][Y];
+char map_return_19[X][Y];
+char map_return_20[X][Y];
+char map_return_21[X][Y];
+char map_return_22[X][Y];
+char map_return_23[X][Y];
+char map_return_24[X][Y];
+char map_return_25[X][Y];
+char map_return_26[X][Y];
+char map_return_27[X][Y];
+char map_return_28[X][Y];
+char map_return_29[X][Y];
+char map_return_30[X][Y];
+char map_return_31[X][Y];
+char map_return_32[X][Y];
+char map_return_33[X][Y];
+char map_return_34[X][Y];
+char map_return_35[X][Y];
+char map_return_36[X][Y];
+char map_return_37[X][Y];
+char map_return_38[X][Y];
+char map_return_39[X][Y];
+char map_return_40[X][Y];
+char* p_return;
+int map_return_copy(char*,char*);
+
+int return_map(char* p_map)//选择回档ID
+{
+    switch(return_num%ARM+1){
+        case 1:p_return = &map_return_1[0][0];break;
+        case 2:p_return = &map_return_2[0][0];break;
+        case 3:p_return = &map_return_3[0][0];break;
+        case 4:p_return = &map_return_4[0][0];break;
+        case 5:p_return = &map_return_5[0][0];break;
+        case 6:p_return = &map_return_6[0][0];break;
+        case 7:p_return = &map_return_7[0][0];break;
+        case 8:p_return = &map_return_8[0][0];break;
+        case 9:p_return = &map_return_9[0][0];break;
+        case 10:p_return = &map_return_10[0][0];break;
+        case 11:p_return = &map_return_11[0][0];break;
+        case 12:p_return = &map_return_12[0][0];break;
+        case 13:p_return = &map_return_13[0][0];break;
+        case 14:p_return = &map_return_14[0][0];break;
+        case 15:p_return = &map_return_15[0][0];break;
+        case 16:p_return = &map_return_16[0][0];break;
+        case 17:p_return = &map_return_17[0][0];break;
+        case 18:p_return = &map_return_18[0][0];break;
+        case 19:p_return = &map_return_19[0][0];break;
+        case 20:p_return = &map_return_20[0][0];break;
+        case 21:p_return = &map_return_21[0][0];break;
+        case 22:p_return = &map_return_22[0][0];break;
+        case 23:p_return = &map_return_23[0][0];break;
+        case 24:p_return = &map_return_24[0][0];break;
+        case 25:p_return = &map_return_25[0][0];break;
+        case 26:p_return = &map_return_26[0][0];break;
+        case 27:p_return = &map_return_27[0][0];break;
+        case 28:p_return = &map_return_28[0][0];break;
+        case 29:p_return = &map_return_29[0][0];break;
+        case 30:p_return = &map_return_30[0][0];break;
+        case 31:p_return = &map_return_31[0][0];break;
+        case 32:p_return = &map_return_32[0][0];break;
+        case 33:p_return = &map_return_33[0][0];break;
+        case 34:p_return = &map_return_34[0][0];break;
+        case 35:p_return = &map_return_35[0][0];break;
+        case 36:p_return = &map_return_36[0][0];break;
+        case 37:p_return = &map_return_37[0][0];break;
+        case 38:p_return = &map_return_38[0][0];break;
+        case 39:p_return = &map_return_39[0][0];break;
+        case 40:p_return = &map_return_40[0][0];break;
+        default:break;
+    }
+    map_return_copy(p_map,p_return);
+    return 0;
+}
+
+int save_map(char* p_map)//选择回档ID
+{
+    switch(return_num%ARM+1){
+        case 1:p_return = &map_return_1[0][0];break;
+        case 2:p_return = &map_return_2[0][0];break;
+        case 3:p_return = &map_return_3[0][0];break;
+        case 4:p_return = &map_return_4[0][0];break;
+        case 5:p_return = &map_return_5[0][0];break;
+        case 6:p_return = &map_return_6[0][0];break;
+        case 7:p_return = &map_return_7[0][0];break;
+        case 8:p_return = &map_return_8[0][0];break;
+        case 9:p_return = &map_return_9[0][0];break;
+        case 10:p_return = &map_return_10[0][0];break;
+        case 11:p_return = &map_return_11[0][0];break;
+        case 12:p_return = &map_return_12[0][0];break;
+        case 13:p_return = &map_return_13[0][0];break;
+        case 14:p_return = &map_return_14[0][0];break;
+        case 15:p_return = &map_return_15[0][0];break;
+        case 16:p_return = &map_return_16[0][0];break;
+        case 17:p_return = &map_return_17[0][0];break;
+        case 18:p_return = &map_return_18[0][0];break;
+        case 19:p_return = &map_return_19[0][0];break;
+        case 20:p_return = &map_return_20[0][0];break;
+        case 21:p_return = &map_return_21[0][0];break;
+        case 22:p_return = &map_return_22[0][0];break;
+        case 23:p_return = &map_return_23[0][0];break;
+        case 24:p_return = &map_return_24[0][0];break;
+        case 25:p_return = &map_return_25[0][0];break;
+        case 26:p_return = &map_return_26[0][0];break;
+        case 27:p_return = &map_return_27[0][0];break;
+        case 28:p_return = &map_return_28[0][0];break;
+        case 29:p_return = &map_return_29[0][0];break;
+        case 30:p_return = &map_return_30[0][0];break;
+        case 31:p_return = &map_return_31[0][0];break;
+        case 32:p_return = &map_return_32[0][0];break;
+        case 33:p_return = &map_return_33[0][0];break;
+        case 34:p_return = &map_return_34[0][0];break;
+        case 35:p_return = &map_return_35[0][0];break;
+        case 36:p_return = &map_return_36[0][0];break;
+        case 37:p_return = &map_return_37[0][0];break;
+        case 38:p_return = &map_return_38[0][0];break;
+        case 39:p_return = &map_return_39[0][0];break;
+        case 40:p_return = &map_return_40[0][0];break;
+        default:break;
+    }
+    map_return_copy(p_return,p_map);
+    return 0;
+}
+
+int map_return_copy(char* map_return_num,char* p_map)//摘抄回档
+{
+    int i,j;
+    for(j=0;j<Y;j++){
+        for(i=0;i<X;i++){
+            *(map_return_num+i+X*j) = *(p_map+i+X*j);
+        }
+    }
+    return 0;
+}

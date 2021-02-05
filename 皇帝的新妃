@@ -1,0 +1,197 @@
+#include <stdio.h>
+#include <Windows.h>
+#include <time.h>
+#include <stdlib.h>
+
+int main()
+{
+    char a[20][30];
+    int fznum,i,j,k,l,fen=20;
+    char b[5][10]={"丫鬟","贵人","妃子","贵妃","皇后"};
+    int c[20]={1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};         //等级代替的数字0-4
+    int d[20]={100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100};       //好感度
+    char ts[3][20]={"姓名","等级","好感度"};
+    int bt=3,xd=4,xdsr;
+    char e[4][20]={"1、纳妃","2、临幸","3、打入冷宫","4、肾虚不搞"};
+    char fz[30];
+
+
+
+
+
+    printf ("欢迎来到  “皇帝的新妃”  游戏！！");
+    Sleep (500);
+    printf ("\n————————————————————\n");
+    printf("游戏规则：\n\n");
+    printf("游戏开始时您将获得3位妃子；\n");
+    printf("可以选择进行的4种活动；\n");
+    printf("初始分数为20分\n");
+    printf("妃子共有5种等级，对最终分数影响为：\n");
+    printf("x2\tx3\tx5\tx7\tx10\n");
+    printf("初始好感度为100，有三位妃子低于60后，游戏结束!!!\n\n");
+    printf("************\n");
+    printf("游戏开始！！\n");
+    printf("************\n");
+
+    printf("请输入第一位妃子姓名：");
+    scanf("%s",a[0]);
+    printf("请输入第二位妃子姓名：");
+    scanf("%s",a[1]);
+    printf("请输入第三位妃子姓名：");
+    scanf("%s",a[2]);
+    fznum=3;
+    for (k=0;k<1000;k++){
+
+    printf("\f\n");
+    for (bt=0;bt<3;bt++)
+    {
+        printf("%s\t",ts[bt]);
+    }
+    printf("\n————————————————————\n");
+    for (i=0;i<fznum;i++)
+    {
+        j=c[i];
+        printf("%s\t",a[i]);
+        printf("%s\t",b[j]);
+        printf("%d\t\n",d[i]);
+    }
+    printf("————————————————————\n");
+    for (xd=0;xd<4;xd++)
+    {
+        printf("%s\n",e[xd]);
+    }
+    printf("*****************\n");
+    printf("请问皇帝想干什么呢？\n");
+    printf("请输入行动代号：");
+    scanf("%d",&xdsr);
+    if (xdsr==1){
+        printf("请输入新妃姓名：");
+        scanf("%s",a[fznum]);
+        fznum++;
+        d[fznum]=100;
+        printf("新妃入住，其他妃子不高兴了，好感度-10\n");
+        for (i=0;i<fznum-1;i++){
+            d[i]=d[i]-10;
+        }
+    }
+    if (xdsr==2){
+        printf("请输入临幸妃子的姓名：");
+        scanf("%s",fz);
+        for (i=0;i<fznum;i++){
+            if (strcmp(fz,a[i])==0){
+                printf("临幸 %s 其好感度+10，其他妃子好感度-10\n",a[i]);
+                d[i]=d[i]+20;
+                for (j=0;j<fznum;j++){
+                    d[j]=d[j]-10;
+                }
+                break;
+
+            }
+
+
+        }
+        if (i==fznum){
+            printf("木有该妃子，你决定冲一把！\n");
+            printf("然而手冲被发现，所有妃子好感度-100\n");
+            for (i=0;i<fznum;i++){
+                d[i]=d[i]-100;
+            }
+        }
+    }
+    if (xdsr==3){
+        printf("请输入打入冷宫的妃子的姓名：");
+        scanf("%s",fz);
+        for (i=0;i<fznum;i++){
+            if(strcmp(fz,a[i])==0){
+                printf("%s 已被打入冷宫，宫中再无此妃！\n",a[i]);
+                printf("所有妃子好感度+10\n");
+                for (j=0;j<fznum;j++){
+                    d[j]+=10;
+                }
+                l=0;
+                for (;i<fznum;i++){
+                    strcpy(a[i],a[i+1]);
+                }
+                for (;l<fznum;l++){
+                    d[l]=d[l+1];
+                }
+                fznum--;
+                break;
+            }
+        }
+        if (i==fznum){
+                printf("宫中到处追查 %s ,但是没有下落，人心惶惶后所有妃子好感度-20\n",fz);
+                for (i=0;i<fznum;i++){
+                    d[i]=d[i]-20;
+                }
+            }
+        }
+    if(xdsr!=1 &&xdsr!=2 &&xdsr!=3){
+        printf("今天老子不上班，爽翻！！\n");
+    }
+    j=0;
+    for (i=0;i<fznum;i++){
+        if (d[i]<60){
+            j++;
+        }
+    }
+    for (i=0;i<fznum;i++){
+        if(d[i]<100){c[i]=0;}
+        if(d[i]>=100&&d[i]<120){c[i]=1;}
+        if(d[i]>=120&&d[i]<150){c[i]=2;}
+        if(d[i]>=150&&d[i]<200){c[i]=3;}
+        if(d[i]>=200){c[i]=4;}
+        }
+
+
+    if (j>=3){
+        printf("——————————————————————————");
+        printf("\f\n超过三位妃子好感度低于60，游戏结束了...");
+        for (i=0;i<fznum;i++){
+            if (c[i]==0){
+                fen=fen*2;
+            }
+            if (c[i]==1){
+                fen=fen*3;
+            }
+            if (c[i]==2){
+                fen=fen*5;
+            }
+            if (c[i]==3){
+                fen=fen*7;
+            }
+            if (c[i]==4){
+                fen=fen*10;
+            }
+        }
+        printf("\n您存活了 %d 回合！",k);
+        printf("\n分数为 %d ",fen);
+        break;
+    }
+
+
+    printf("*****************\n");
+    printf("回合结束结算结果：\n");
+
+    }
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

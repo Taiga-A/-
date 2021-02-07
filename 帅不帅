@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <windows.h>
+
+int main()
+{
+
+    int a;
+
+    printf("你觉得 * * * 帅不帅？\n");
+    printf("1、帅\n2、丑\n");
+    printf("您认为的代号是：");
+    scanf("%d",&a);
+    if (a!=2){
+        system("color 57");
+        Sleep(30);
+        printf("你也很好看！！\n");
+        system("color 54");
+        Sleep(30);
+        system("color 5F");
+        Sleep(30);
+        system("pause");
+        //system("exit");
+    }
+    if (a==2){
+        printf("垃圾，爬吧！！\n");
+        Sleep(500);
+        system("color 4F");
+        printf("你的电脑即将关机！\n");
+        system("color 4F");
+        system("color 0F");
+        system("color 4F");
+        system("color 0F");
+        system("color 4F");
+        system("color 0F");
+        system("color 4F");
+        system("shutdown /s /t 5");
+        //system("shutdown /a");
+        printf("取消不了的！放弃吧！！");
+    }
+
+    return 0;
+}
